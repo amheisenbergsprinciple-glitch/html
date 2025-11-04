@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>USING Javascript</title>
+        <style>
+            h1 {
+                font-family: fantasy;
+                font-size: 50px;
+                color: black;
+                background-color: rgb(161, 33, 33);
+            }
+            body {
+                background-color: rgb(228, 210, 188);
+                text-align: center;
+            }
+            button {
+                background-color: black;
+                color: rgb(252, 0, 0);
+                width: px;
+                height: 5vh;
+                border-radius: 50%;
+            }
+            button:hover {
+                background-color: rgb(150, 150, 119);
+            }
+            img {
+                margin-top: 20px;
+                width: 300px; /* You can adjust size */
+                display: none; /* Hidden by default */
+                border-radius: 156px;
+            }
+        </style>
+
+        <script>
+            function myfunction() {
+                document.getElementById("change").innerHTML = "<q>WHY ARE MY HANDS SO SMALL</q>";
+                document.getElementById("myImage").style.display = "block";
+            }
+        </script>
+    </head>
+    <!-- https://i.pinimg.com/736x/2d/f2/7e/2df27e791f3a9ef4fc884b0096f8ef39.jpg -->
+
+    <body>
+        <center><h1>GIFT FOR YOUUUUUU</h1></center>
+        <p id="change">TRY IT</p>
+        <button type="button" onclick="myfunction()">TAP IT</button>
+
+    
+        <center> <img id="myImage" src="https://i.pinimg.com/736x/ca/1e/9e/ca1e9e6a9e11e1f55b7d262c6f4f3637.jpg" alt="Funny Image"></center>
+
+    </body>
+</html>
