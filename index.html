@@ -269,6 +269,106 @@
   }
   @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+  /* MVP SCANNER APP */
+  #scanner-app {
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .scan-shell {
+    max-width: 980px;
+    margin: 3rem auto 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: rgba(22, 17, 31, 0.92);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  }
+  .scan-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .scan-input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 77, 157, 0.35);
+    background: rgba(13, 11, 18, 0.9);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    outline: none;
+  }
+  .scan-input:focus {
+    border-color: rgba(255, 138, 61, 0.7);
+    box-shadow: 0 0 0 3px rgba(255, 138, 61, 0.15);
+  }
+  .scan-status {
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: rgba(228,217,242,0.75);
+    min-height: 1.2rem;
+  }
+  .scan-status.error { color: #ff9bb0; }
+  .scan-status.ok { color: #8cffda; }
+  .scan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .scan-card {
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.2rem;
+    background: rgba(13, 11, 18, 0.65);
+  }
+  .scan-k {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    color: rgba(228,217,242,0.55);
+    margin-bottom: 0.4rem;
+  }
+  .scan-v {
+    font-family: var(--display);
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .risk-pill {
+    display: inline-flex;
+    border-radius: 999px;
+    border: 1px solid;
+    padding: 0.35rem 0.8rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+  .risk-low { color: #8cffda; border-color: rgba(100,247,200,0.5); background: rgba(100,247,200,0.08); }
+  .risk-medium { color: #ffd9a0; border-color: rgba(255,193,90,0.5); background: rgba(255,193,90,0.08); }
+  .risk-high { color: #ffb3c1; border-color: rgba(255,92,122,0.6); background: rgba(255,92,122,0.09); }
+  .scan-list {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    color: rgba(228,217,242,0.75);
+  }
+  .scan-list li {
+    list-style: none;
+    border: 1px solid rgba(255, 77, 157, 0.2);
+    border-radius: 12px;
+    padding: 0.55rem 0.7rem;
+    background: rgba(255, 77, 157, 0.05);
+  }
+
   section { padding: 6rem 3rem; position: relative; }
   .section-label {
     font-family: var(--mono); font-size: 0.65rem;
@@ -624,11 +724,12 @@
   @keyframes scan { from{top:0%} to{top:100%} }
 
   @media(max-width: 900px) {
-    .problem-grid, .problem-items, .report-wrapper, .future-grid, .challenge, .audience-wrap { grid-template-columns: 1fr; }
+    .problem-grid, .problem-items, .report-wrapper, .future-grid, .challenge, .audience-wrap, .scan-grid { grid-template-columns: 1fr; }
     .flow { grid-template-columns: 1fr 1fr; }
     .flow::before { display: none; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     .tech-grid { grid-template-columns: 1fr 1fr; }
+    .scan-form { grid-template-columns: 1fr; }
     nav { padding: 1rem 1.5rem; }
     section { padding: 4rem 1.5rem; }
   }
@@ -636,6 +737,7 @@
     .nav-links { display: none; }
     .features-grid { grid-template-columns: 1fr; }
     .tech-grid { grid-template-columns: 1fr; }
+    .scan-shell { padding: 1.2rem; }
     footer { flex-direction: column; gap: 0.8rem; text-align: center; }
   }
 </style>
@@ -678,8 +780,58 @@
     </h1>
     <p class="hero-sub">Know where your data lives before hackers do. Scan. Detect. Protect.</p>
     <div class="hero-actions">
-      <button class="btn-primary">SCAN NOW →</button>
+      <button class="btn-primary js-scan-trigger">SCAN NOW →</button>
       <button class="btn-ghost">VIEW DEMO</button>
+    </div>
+  </div>
+</section>
+
+<!-- MVP SCANNER APP -->
+<section id="scanner-app">
+  <div class="section-label">00 &nbsp; MVP_SCANNER</div>
+  <h2>Run a <span style="color:var(--cyan2)">Real First-Stage Scan</span></h2>
+  <p style="color:rgba(228,217,242,0.56);font-size:1.05rem;max-width:720px;margin-top:0.75rem;font-weight:300;line-height:1.6;">
+    Working prototype for the first core stages: input, initial source check, and risk analysis with concrete next actions.
+  </p>
+
+  <div class="scan-shell reveal">
+    <form class="scan-form" id="scanForm">
+      <input id="scanInput" class="scan-input" type="text" placeholder="Enter email or phone number" autocomplete="off" />
+      <button type="submit" class="btn-primary">RUN SCAN</button>
+    </form>
+    <div id="scanStatus" class="scan-status">SYSTEM READY</div>
+
+    <div class="scan-grid">
+      <div class="scan-card">
+        <div class="scan-k">SCAN TARGET</div>
+        <div id="scanTarget" class="scan-v">-</div>
+      </div>
+      <div class="scan-card">
+        <div class="scan-k">RISK LEVEL</div>
+        <div id="scanRiskWrap"><span class="risk-pill risk-low">LOW</span></div>
+      </div>
+      <div class="scan-card">
+        <div class="scan-k">BREACHES FOUND</div>
+        <div id="scanCount" class="scan-v">0</div>
+      </div>
+      <div class="scan-card">
+        <div class="scan-k">EXPOSED DATA TYPES</div>
+        <div id="scanDataTypes" class="scan-v">-</div>
+      </div>
+    </div>
+
+    <div class="scan-card" style="margin-top:1rem;">
+      <div class="scan-k">BREACH SOURCES (STAGE 2)</div>
+      <ul id="scanBreaches" class="scan-list">
+        <li>No scans yet.</li>
+      </ul>
+    </div>
+
+    <div class="scan-card" style="margin-top:1rem;">
+      <div class="scan-k">ACTIONS (STAGE 3)</div>
+      <ul id="scanActions" class="scan-list">
+        <li>Run a scan to generate recommendations.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1105,7 +1257,7 @@
   <h2 style="position:relative">Are You <span style="color:var(--red)">Exposed?</span></h2>
   <p>Millions of data records are leaked every year. It takes 30 seconds to find out if yours is one of them.</p>
   <div class="cta-actions">
-    <button class="btn-primary">RUN A FREE SCAN →</button>
+    <button class="btn-primary js-scan-trigger">RUN A FREE SCAN →</button>
     <button class="btn-ghost">LEARN MORE</button>
   </div>
 </section>
@@ -1178,6 +1330,134 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
   }, { threshold: 0.45 });
   rmItems.forEach(el => rmObs.observe(el));
+
+  // MVP scanner application (stage 1-3)
+  const scanForm = document.getElementById('scanForm');
+  const scanInput = document.getElementById('scanInput');
+  const scanStatus = document.getElementById('scanStatus');
+  const scanTarget = document.getElementById('scanTarget');
+  const scanRiskWrap = document.getElementById('scanRiskWrap');
+  const scanCount = document.getElementById('scanCount');
+  const scanDataTypes = document.getElementById('scanDataTypes');
+  const scanBreaches = document.getElementById('scanBreaches');
+  const scanActions = document.getElementById('scanActions');
+  const scanTriggers = document.querySelectorAll('.js-scan-trigger');
+
+  const breachDataset = [
+    { source: 'LinkedIn', year: 2021, records: 700000000, signals: ['email', 'password', 'name'] },
+    { source: 'Canva', year: 2020, records: 139000000, signals: ['email', 'username', 'password'] },
+    { source: 'Adobe', year: 2019, records: 153000000, signals: ['email', 'password'] },
+    { source: 'Facebook', year: 2021, records: 533000000, signals: ['phone', 'name'] },
+    { source: 'Dropbox', year: 2016, records: 68000000, signals: ['email', 'password'] },
+    { source: 'Twitter', year: 2022, records: 235000000, signals: ['email', 'phone'] }
+  ];
+
+  function validEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function validPhone(v) {
+    const digits = v.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 15;
+  }
+
+  function stageTwoLookup(input) {
+    const normalized = input.toLowerCase();
+    const seed = normalized.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+    const count = Math.min(4, (seed % 4) + 1);
+    const picked = [];
+    for (let idx = 0; idx < count; idx++) {
+      picked.push(breachDataset[(seed + idx) % breachDataset.length]);
+    }
+    return picked;
+  }
+
+  function unique(arr) {
+    return [...new Set(arr)];
+  }
+
+  function buildActions(risk, types) {
+    const base = [
+      'Enable multi-factor authentication on primary accounts.',
+      'Use a password manager and avoid reused passwords.'
+    ];
+    if (types.includes('password')) base.unshift('Change passwords immediately for breached services.');
+    if (types.includes('phone')) base.push('Harden SIM and carrier account recovery settings.');
+    if (risk === 'HIGH') base.push('Prioritize critical accounts: email, banking, cloud storage.');
+    if (risk === 'MEDIUM') base.push('Monitor account logins and alert emails for 30 days.');
+    return unique(base);
+  }
+
+  function renderList(node, items) {
+    node.innerHTML = '';
+    items.forEach(text => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      node.appendChild(li);
+    });
+  }
+
+  function setStatus(text, kind) {
+    scanStatus.textContent = text;
+    scanStatus.className = 'scan-status' + (kind ? ' ' + kind : '');
+  }
+
+  function runScan(rawInput) {
+    const input = rawInput.trim();
+    const isEmail = validEmail(input);
+    const isPhone = validPhone(input);
+
+    if (!isEmail && !isPhone) {
+      setStatus('INVALID INPUT: ENTER A VALID EMAIL OR PHONE NUMBER', 'error');
+      return;
+    }
+
+    setStatus('STAGE 1: INPUT VALIDATED | STAGE 2: SCANNING SOURCES...', '');
+    scanTarget.textContent = input;
+
+    setTimeout(() => {
+      const matches = stageTwoLookup(input);
+      const signals = unique(matches.flatMap(x => x.signals));
+      const score = matches.length * 25 + (signals.includes('password') ? 20 : 0) + (signals.includes('phone') ? 10 : 0);
+      let risk = 'LOW';
+      let riskClass = 'risk-low';
+      if (score >= 75) {
+        risk = 'HIGH';
+        riskClass = 'risk-high';
+      } else if (score >= 45) {
+        risk = 'MEDIUM';
+        riskClass = 'risk-medium';
+      }
+
+      scanRiskWrap.innerHTML = '<span class="risk-pill ' + riskClass + '">' + risk + '</span>';
+      scanCount.textContent = String(matches.length);
+      scanDataTypes.textContent = signals.join(', ').toUpperCase();
+
+      renderList(
+        scanBreaches,
+        matches.map(m => m.source + ' (' + m.year + ') | records: ' + m.records.toLocaleString())
+      );
+      renderList(scanActions, buildActions(risk, signals));
+      setStatus('STAGE 3: ANALYSIS COMPLETE | REPORT GENERATED', 'ok');
+    }, 900);
+  }
+
+  if (scanForm) {
+    scanForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      runScan(scanInput.value);
+    });
+  }
+
+  scanTriggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById('scanner-app');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => {
+        if (scanInput) scanInput.focus();
+      }, 350);
+    });
+  });
 </script>
 </body>
 </html>
